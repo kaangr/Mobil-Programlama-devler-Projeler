@@ -1,0 +1,80 @@
+class Person {
+  String _name;
+
+  Person(this._name);
+
+  String get name => _name;
+}
+
+class Secretary {
+  List<Teacher> teachers = [];
+  List<Student> students = [];
+
+  void addTeacher(Teacher teacher) {
+    teachers.add(teacher);
+  }
+
+  void addStudent(Student student) {
+    students.add(student);
+  }
+
+  void printInfo() { 
+    for (var teacher in teachers) {
+      print('Teacher: ${teacher.name}');
+    }
+    for (var student in students) {
+      print('Student: ${student.name}');
+    }
+  }
+}
+
+class Teacher extends Person {
+  Teacher(String name) : super(name);
+
+  void study([int? hours]) {
+    if (hours != null) {
+      print('$name is studying for $hours hours.');
+    } else {
+      print('$name is studying.');
+    }
+  }
+
+  void giveExam() {
+    print('$name is giving an exam.');
+  }
+}
+
+class Student extends Person {
+  Student(String name) : super(name);
+
+  void study([int? hours]) {
+    if (hours != null) {
+      print('$name is studying for $hours hours.');
+    } else {
+      print('$name is studying.');
+    }
+  }
+
+  void takeExam() {
+    print('$name is taking an exam.');
+  }
+}
+
+void main(List<String> args) {
+  Secretary secretary = Secretary();
+  Teacher teacher1 = Teacher('Sinan Teacher');
+  Student student1 = Student('Kaan');
+
+  secretary.addTeacher(teacher1);
+  secretary.addStudent(student1);
+
+  teacher1.study();
+  teacher1.giveExam();
+  teacher1.study(3); 
+
+  student1.study();
+  student1.takeExam();
+  student1.study(2);
+
+  secretary.printInfo();
+}
