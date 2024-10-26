@@ -71,9 +71,13 @@ class _LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: const Center(child: Text('Logo')),
+                  child: Image.asset(
+                    'assets/images/medeniyet_logo.png',
+                    fit: BoxFit.contain,
+                    
+                  ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 80),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: ['Öğrenci', 'Öğretmen', 'Sekreter'].map((role) {
