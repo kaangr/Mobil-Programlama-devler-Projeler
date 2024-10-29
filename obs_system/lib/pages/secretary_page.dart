@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../users.dart';
 
+
 class SecretaryPage extends StatelessWidget {
   final Secretary secretary;
 
@@ -10,7 +11,22 @@ class SecretaryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Sekreter Sayfası')),
-      body: const Center(child: Text('Hoş geldiniz, Sekreter!')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Hoş geldiniz, Sekreter ${secretary.name}',
+            style: const TextStyle(fontSize: 20),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              secretary.printInfo(); // Sekreter bilgilerini yazdır
+            },
+            child: const Text('Bilgileri Göster'),
+          ),
+        ],
+      ),
     );
   }
 }
