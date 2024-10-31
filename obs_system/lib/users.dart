@@ -10,6 +10,7 @@ class Secretary extends Person {
   Secretary(super._name);
   List<Teacher> teachers = [];
   List<Student> students = [];
+  List<String> announcements = [];
 
   void addTeacher(Teacher teacher) {
     teachers.add(teacher);
@@ -19,41 +20,68 @@ class Secretary extends Person {
     students.add(student);
   }
 
+  void addAnnouncement(String announcement) {
+    announcements.add(announcement);
+  }
+
+  void removeAnnouncement(int index) {
+    announcements.removeAt(index);
+  }
+
+  List<String> getAnnouncements() {
+    return announcements;
+  }
+
   void printInfo() {
-    for (var teacher in teachers) {
-      print('Teacher: ${teacher.name}');
+    print('Duyurular:');
+    for (var announcement in announcements) {
+      print('- $announcement');
     }
+    print('\nÖğretmenler:');
+    for (var teacher in teachers) {
+      print('- ${teacher.name}');
+    }
+    print('\nÖğrenciler:');
     for (var student in students) {
-      print('Student: ${student.name}');
+      print('- ${student.name}');
     }
   }
 }
 
 class Teacher extends Person {
   Teacher(super._name);
+  Map<String, Map<String, double>> studentGrades = {};
 
-  void study([int? hours]) {
-    if (hours != null) {
-      print('$name is studying for $hours hours.');
-    } else {
-      print('$name is studying.');
-    }
+  void addGrades(String studentName, double midterm, double final_) {
+    studentGrades[studentName] = {
+      'midterm': midterm,
+      'final': final_,
+      'average': calculateAverage(midterm, final_)
+    };
   }
 
-  void giveExam() {
-    print('$name is giving an exam.');
+  double calculateAverage(double midterm, double final_) {
+    return (midterm * 0.4) + (final_ * 0.6);
+  }
+
+  Map<String, double> getGrades(String studentName) {
+    return studentGrades[studentName] ?? {};
   }
 }
 
 class Student extends Person {
   Student(super._name);
+  List<String> todoList = [];
 
-  void study([int? hours]) {
-    if (hours != null) {
-    } else {}
+  void addTodo(String task) {
+    todoList.add(task);
   }
 
-  void takeExam() {
-    print('$name is taking an exam.');
+  void removeTodo(int index) {
+    todoList.removeAt(index);
+  }
+
+  List<String> getTodoList() {
+    return todoList;
   }
 }
