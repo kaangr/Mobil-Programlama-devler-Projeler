@@ -1,0 +1,58 @@
+
+CREATE TABLE Personel (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ad TEXT NOT NULL,
+    soyad TEXT NOT NULL,
+    departman TEXT,
+    maas INTEGER
+);
+
+INSERT INTO Personel (ad, soyad, departman, maas) VALUES
+    ('Ahmet', 'Yılmaz', 'IT', 12000),
+    ('Mehmet', 'Kara', 'Muhasebe', 9000),
+    ('Ayşe', 'Demir', 'IT', 13000),
+    ('Fatma', 'Şahin', 'İK', 8500),
+    ('Ali', 'Öztürk', 'Muhasebe', 9500);
+
+SELECT * FROM Personel;
+
+UPDATE Personel 
+SET maas = 10000 
+WHERE ad = 'Ali' AND soyad = 'Öztürk';
+
+DELETE FROM Personel 
+WHERE ad = 'Fatma' AND soyad = 'Şahin';
+
+SELECT 
+    departman,
+    COUNT(*) as calisan_sayisi,
+    AVG(maas) as ortalama_maas,
+    MAX(maas) as en_yuksek_maas,
+    MIN(maas) as en_dusuk_maas
+FROM Personel
+GROUP BY departman;
+
+SELECT 
+    CASE 
+        WHEN maas < 9000 THEN '0-9000'
+        WHEN maas BETWEEN 9000 AND 11000 THEN '9000-11000'
+        ELSE '11000+'
+    END as maas_araligi,
+    COUNT(*) as calisan_sayisi
+FROM Personel
+GROUP BY 
+    CASE 
+        WHEN maas < 9000 THEN '0-9000'
+        WHEN maas BETWEEN 9000 AND 11000 THEN '9000-11000'
+        ELSE '11000+'
+    END;
+
+SELECT 
+    p1.* 
+FROM Personel p1
+INNER JOIN (
+    SELECT departman, MAX(maas) as max_maas 
+    FROM Personel 
+    GROUP BY departman
+) p2 
+ON p1.departman = p2.departman AND p1.maas = p2.max_maas;
