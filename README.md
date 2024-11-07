@@ -2,4 +2,4 @@
 
 -4. Haftanın ödevi obs_system adlı projedir.
 - Proje 5. hafta ödevi için güncellenmiştir.
-  6. Haftanın ödevi DartHomeworks dizinindedir.
+- 6. Haftanın ödevi DartHomeworks dizinindedir.
