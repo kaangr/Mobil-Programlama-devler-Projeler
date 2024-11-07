@@ -17,7 +17,7 @@ class _SecretaryPageState extends State<SecretaryPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sekreter Sayfası'),
-        backgroundColor: const Color(0xFF199DB5),
+    
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

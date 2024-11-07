@@ -16,7 +16,7 @@ class _StudentPageState extends State<StudentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Öğrenci Sayfası')),
+      appBar: AppBar(title: const Text('Öğrenci Sayfası'),), //renge bak
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
