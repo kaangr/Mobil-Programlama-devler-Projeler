@@ -23,9 +23,9 @@ class DatabaseHelper {
   Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE users(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE,
-        password TEXT
+        userid INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        password TEXT NOT NULL
       )
     ''');
     
